@@ -10,6 +10,7 @@
 		08DDB48F19410336007121F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DDB48E19410336007121F0 /* AppDelegate.swift */; };
 		08DDB49119410336007121F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08DDB49019410336007121F0 /* Images.xcassets */; };
 		08DDB49D19410336007121F0 /* UICollectionView_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DDB49C19410336007121F0 /* UICollectionView_SwiftTests.swift */; };
+		08DDB4A719410349007121F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DDB4A619410349007121F0 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,7 @@
 		08DDB49619410336007121F0 /* UICollectionView-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UICollectionView-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08DDB49B19410336007121F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08DDB49C19410336007121F0 /* UICollectionView_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView_SwiftTests.swift; sourceTree = "<group>"; };
+		08DDB4A619410349007121F0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				08DDB48E19410336007121F0 /* AppDelegate.swift */,
+				08DDB4A619410349007121F0 /* ViewController.swift */,
 				08DDB49019410336007121F0 /* Images.xcassets */,
 				08DDB48C19410336007121F0 /* Supporting Files */,
 			);
@@ -200,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DDB4A719410349007121F0 /* ViewController.swift in Sources */,
 				08DDB48F19410336007121F0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "UICollectionView-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -318,6 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "UICollectionView-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -379,6 +385,7 @@
 				08DDB4A219410336007121F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		08DDB4A319410336007121F0 /* Build configuration list for PBXNativeTarget "UICollectionView-SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -387,6 +394,7 @@
 				08DDB4A519410336007121F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
