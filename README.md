@@ -9,6 +9,3 @@ UICollectionView implemented using Swift programming language
 * [@gazollajr](http://twitter.com/gazollajr)
 * [http://gazapps.com](http://gazapps.com)
 
-### License
-
-UICollectionView-Swift is licensed under the MIT License.
