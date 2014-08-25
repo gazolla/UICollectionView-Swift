@@ -60,12 +60,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.collectionView!.dataSource = self
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         self.collectionView!.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        self.view?.addSubview(self.collectionView)
+        self.view?.addSubview(self.collectionView!)
         
     }
 
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize{
-        return CGSizeMake(310, 150)
+        return CGSizeMake(300, 150)
     }
 
     
