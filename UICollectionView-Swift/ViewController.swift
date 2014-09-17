@@ -55,26 +55,26 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func setupCollectionView(){
         self.flowLayout = UICollectionViewFlowLayout()
         self.flowLayout!.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
-        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.flowLayout)
+        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.flowLayout!)
         self.collectionView!.delegate = self
         self.collectionView!.dataSource = self
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         self.collectionView!.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        self.view?.addSubview(self.collectionView!)
+        self.view.addSubview(self.collectionView!)
         
     }
 
-    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize{
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         return CGSizeMake(300, 150)
     }
 
     
-    func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int{
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.items!.count
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
         
         cell.layer.borderWidth = 0.5
