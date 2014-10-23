@@ -11,6 +11,8 @@
 		08DDB49119410336007121F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08DDB49019410336007121F0 /* Images.xcassets */; };
 		08DDB49D19410336007121F0 /* UICollectionView_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DDB49C19410336007121F0 /* UICollectionView_SwiftTests.swift */; };
 		08DDB4A719410349007121F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DDB4A619410349007121F0 /* ViewController.swift */; };
+		9AAFC20F19F88D15006CA329 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAFC20E19F88D15006CA329 /* CustomCollectionViewCell.swift */; };
+		9AAFC21119F88D4B006CA329 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAFC21019F88D4B006CA329 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,8 @@
 		08DDB49B19410336007121F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08DDB49C19410336007121F0 /* UICollectionView_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView_SwiftTests.swift; sourceTree = "<group>"; };
 		08DDB4A619410349007121F0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9AAFC20E19F88D15006CA329 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		9AAFC21019F88D4B006CA329 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				08DDB48E19410336007121F0 /* AppDelegate.swift */,
+				9AAFC21019F88D4B006CA329 /* CardView.swift */,
+				9AAFC20E19F88D15006CA329 /* CustomCollectionViewCell.swift */,
 				08DDB4A619410349007121F0 /* ViewController.swift */,
 				08DDB49019410336007121F0 /* Images.xcassets */,
 				08DDB48C19410336007121F0 /* Supporting Files */,
@@ -204,6 +210,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				08DDB4A719410349007121F0 /* ViewController.swift in Sources */,
+				9AAFC20F19F88D15006CA329 /* CustomCollectionViewCell.swift in Sources */,
+				9AAFC21119F88D4B006CA329 /* CardView.swift in Sources */,
 				08DDB48F19410336007121F0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

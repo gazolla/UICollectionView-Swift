@@ -19,7 +19,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.title = "CollectionView on Swift"
         
         self.items = NSMutableArray()
-        self.items?.addObjectsFromArray(["1"])
+        self.items?.addObjectsFromArray(["My Card"])
         
         let addBtn  = UIBarButtonItem (barButtonSystemItem: UIBarButtonSystemItem.Add,
                                                     target: self,
@@ -32,9 +32,25 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func addClicked() {
         
-        self.collectionView?.performBatchUpdates({
+        var alert = UIAlertView()
+        alert.delegate = self
+        alert.title = "Enter Input"
+        alert.addButtonWithTitle("Done")
+        alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
+        alert.addButtonWithTitle("Cancel")
+        alert.show()
+    }
+    
+    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
+    {
+        
+        if (buttonIndex == 0){
+            
+            let textField = alertView.textFieldAtIndex(0)
+            
+            self.collectionView?.performBatchUpdates({
                 let resultsSize = self.items?.count
-                self.items?.addObject("item")
+                self.items?.addObject(textField!.text)
                 let size = resultsSize! + 1
                 var arrayWithIndexPaths = NSMutableArray()
                 var i = 0
@@ -42,8 +58,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     arrayWithIndexPaths.addObject(NSIndexPath(forRow: i, inSection: 0))
                 }
                 self.collectionView?.insertItemsAtIndexPaths(arrayWithIndexPaths)
-            },
-            completion: nil)
+                },
+                completion: nil)
+
+        }
+        
+       
         
     }
 
@@ -58,7 +78,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.flowLayout!)
         self.collectionView!.delegate = self
         self.collectionView!.dataSource = self
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        self.collectionView!.registerClass(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         self.collectionView!.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         self.view.addSubview(self.collectionView!)
         
@@ -75,8 +95,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as CustomCollectionViewCell
         
+        cell.setCardText(self.items![indexPath.row] as String)
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1).CGColor
         cell.layer.cornerRadius = 4
