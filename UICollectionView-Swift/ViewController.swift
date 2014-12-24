@@ -8,37 +8,54 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UIGestureRecognizerDelegate {
 
-    var collectionView:UICollectionView?
-    var flowLayout:UICollectionViewFlowLayout?
-    var items:NSMutableArray?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "CollectionView on Swift"
-        
-        self.items = NSMutableArray()
-        self.items?.addObjectsFromArray(["My Card"])
-        
-        let addBtn  = UIBarButtonItem (barButtonSystemItem: UIBarButtonSystemItem.Add,
-                                                    target: self,
-                                                    action: "addClicked")
-        
-        self.navigationItem.rightBarButtonItem = addBtn
-        
-        setupCollectionView()
-    }
+    lazy var collectionView:UICollectionView = {
+        var cv = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.flowLayout)
+        cv.delegate = self
+        cv.dataSource = self
+        cv.registerClass(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        cv.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        return cv
+    }()
     
-    func addClicked() {
-        
+    lazy var flowLayout:UICollectionViewFlowLayout = {
+        var flow = UICollectionViewFlowLayout()
+        flow.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
+        return flow
+    }()
+    
+    lazy var items:NSMutableArray = {
+        var it:NSMutableArray = NSMutableArray()
+        return it
+    }()
+    
+    lazy var addButton:UIBarButtonItem = {
+        var btn:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addTapped")
+        return btn
+    }()
+    
+    lazy var addAlert:UIAlertView = {
         var alert = UIAlertView()
         alert.delegate = self
         alert.title = "Enter Input"
         alert.addButtonWithTitle("Done")
         alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
         alert.addButtonWithTitle("Cancel")
-        alert.show()
+        return alert
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "CollectionView on Swift"
+        self.items.addObjectsFromArray(["My Card"])
+        self.navigationItem.rightBarButtonItem = self.addButton
+        
+        self.view.addSubview(self.collectionView)
+    }
+    
+    func addTapped() {
+        self.addAlert.show()
     }
     
     func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
@@ -48,16 +65,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             let textField = alertView.textFieldAtIndex(0)
             
-            self.collectionView?.performBatchUpdates({
-                let resultsSize = self.items?.count
-                self.items?.addObject(textField!.text)
-                let size = resultsSize! + 1
+            self.collectionView.performBatchUpdates({
+                let resultsSize = self.items.count
+                self.items.addObject(textField!.text)
+                let size = resultsSize + 1
                 var arrayWithIndexPaths = NSMutableArray()
                 var i = 0
-                for (i = resultsSize!; i < resultsSize! + 1; i++) {
+                for (i = resultsSize; i < resultsSize + 1; i++) {
                     arrayWithIndexPaths.addObject(NSIndexPath(forRow: i, inSection: 0))
                 }
-                self.collectionView?.insertItemsAtIndexPaths(arrayWithIndexPaths)
+                self.collectionView.insertItemsAtIndexPaths(arrayWithIndexPaths)
                 },
                 completion: nil)
 
@@ -72,17 +89,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Dispose of any resources that can be recreated.
     }
     
-    func setupCollectionView(){
-        self.flowLayout = UICollectionViewFlowLayout()
-        self.flowLayout!.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
-        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.flowLayout!)
-        self.collectionView!.delegate = self
-        self.collectionView!.dataSource = self
-        self.collectionView!.registerClass(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        self.collectionView!.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        self.view.addSubview(self.collectionView!)
-        
-    }
+
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         return CGSizeMake(300, 150)
@@ -90,14 +97,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return self.items!.count
+        return self.items.count
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as CustomCollectionViewCell
         
-        cell.setCardText(self.items![indexPath.row] as String)
+        cell.setCardText(self.items[indexPath.row] as String)
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1).CGColor
         cell.layer.cornerRadius = 4
@@ -108,15 +115,5 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
 
-
-    /*
-    // #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

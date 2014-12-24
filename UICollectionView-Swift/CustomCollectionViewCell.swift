@@ -8,21 +8,28 @@
 
 import UIKit
 
-class CustomCollectionViewCell: UICollectionViewCell {
+class CustomCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     
     var cardView:CardView
-    
-    init(frame: CGRect, collectionViewLayout: UICollectionViewLayout){
-        cardView = CardView(frame: frame)
-        super.init(frame: frame)
-        self.contentView.addSubview(cardView)
-    }
     
     override init(frame: CGRect) {
         cardView = CardView(frame: frame)
         super.init(frame: frame)
         self.contentView.addSubview(cardView)
+        
+        let swipeLeft:UISwipeGestureRecognizer  = UISwipeGestureRecognizer(target: self, action: "didSwipeLeft:")
+        swipeLeft.delegate = self
+        swipeLeft.numberOfTouchesRequired = 1
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        
+        self.addGestureRecognizer(swipeLeft)
     }
+    
+    func didSwipeLeft(gesture:UIGestureRecognizer){
+        NSLog("Swipe left")
+    }
+    
+
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
