@@ -14,6 +14,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         var cv = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.flowLayout)
         cv.delegate = self
         cv.dataSource = self
+        cv.bounces = true
+        cv.alwaysBounceVertical = true
+        cv.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
         cv.registerClass(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         cv.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         return cv
@@ -21,7 +24,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     lazy var flowLayout:UICollectionViewFlowLayout = {
         var flow = UICollectionViewFlowLayout()
-        flow.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
+        flow.sectionInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)
         return flow
     }()
     
@@ -50,7 +53,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.title = "CollectionView on Swift"
         self.items.addObjectsFromArray(["My Card"])
         self.navigationItem.rightBarButtonItem = self.addButton
-        
         self.view.addSubview(self.collectionView)
     }
     
@@ -92,7 +94,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-        return CGSizeMake(300, 150)
+        
+        let width:CGFloat = self.view.bounds.size.width*0.98;
+        let height:CGFloat = 150.0;
+
+        return CGSizeMake(width, height)
+        
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        self.flowLayout.invalidateLayout()
     }
 
     
