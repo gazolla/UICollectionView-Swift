@@ -60,38 +60,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.addAlert.show()
     }
     
-    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
-    {
+    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
         
         if (buttonIndex == 0){
-            
             let textField = alertView.textFieldAtIndex(0)
-            
             self.collectionView.performBatchUpdates({
-                let resultsSize = self.items.count
-                self.items.addObject(textField!.text)
-                let size = resultsSize + 1
-                var arrayWithIndexPaths = NSMutableArray()
-                var i = 0
-                for (i = resultsSize; i < resultsSize + 1; i++) {
-                    arrayWithIndexPaths.addObject(NSIndexPath(forRow: i, inSection: 0))
-                }
-                self.collectionView.insertItemsAtIndexPaths(arrayWithIndexPaths)
+                        let resultsSize = self.items.count
+                        self.items.addObject(textField!.text)
+                        let size = resultsSize + 1
+                        var arrayWithIndexPaths = NSMutableArray()
+                        var i = 0
+                        for (i = resultsSize; i < resultsSize + 1; i++) {
+                                    arrayWithIndexPaths.addObject(NSIndexPath(forRow: i, inSection: 0))
+                        }
+                        self.collectionView.insertItemsAtIndexPaths(arrayWithIndexPaths)
                 },
                 completion: nil)
-
         }
-        
-       
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         
@@ -99,7 +90,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let height:CGFloat = 150.0;
 
         return CGSizeMake(width, height)
-        
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -107,12 +97,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.flowLayout.invalidateLayout()
     }
 
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.items.count
     }
     
-    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as CustomCollectionViewCell
         
@@ -123,9 +111,5 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         cell.backgroundColor = UIColor.whiteColor()
         
         return cell
-
-        
     }
-
-
 }
