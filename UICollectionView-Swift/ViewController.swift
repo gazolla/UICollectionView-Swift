@@ -54,6 +54,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.items.addObjectsFromArray(["My Card"])
         self.navigationItem.rightBarButtonItem = self.addButton
         self.view.addSubview(self.collectionView)
+        self.navigationController?.hidesBarsWhenVerticallyCompact = true
     }
     
     var previousScrollViewYOffset:CGFloat = 0.0
