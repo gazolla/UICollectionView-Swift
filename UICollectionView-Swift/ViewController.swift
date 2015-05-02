@@ -76,7 +76,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         for (i = resultsSize; i < resultsSize + 1; i++) {
                                     arrayWithIndexPaths.addObject(NSIndexPath(forRow: i, inSection: 0))
                         }
-                        self.collectionView.insertItemsAtIndexPaths(arrayWithIndexPaths)
+                        self.collectionView.insertItemsAtIndexPaths(arrayWithIndexPaths as [AnyObject])
                 },
                 completion: nil)
         }
@@ -105,9 +105,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as CustomCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CustomCollectionViewCell
         
-        cell.setCardText(self.items[indexPath.row] as String)
+        cell.setCardText(self.items[indexPath.row] as! String)
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1).CGColor
         cell.layer.cornerRadius = 4
@@ -158,17 +158,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func updateBarButtonItems(alpha:CGFloat){
-        if let left = self.navigationItem.leftBarButtonItems? {
-            for item:UIBarButtonItem in left as [UIBarButtonItem] {
-                if let view = item.customView? {
+        if let left = self.navigationItem.leftBarButtonItems {
+            for item:UIBarButtonItem in left as! [UIBarButtonItem] {
+                if let view = item.customView {
                     view.alpha = alpha
                 }
             }
         }
         
-        if let right = self.navigationItem.rightBarButtonItems? {
-            for item:UIBarButtonItem in  right as [UIBarButtonItem]{
-                if let view = item.customView? {
+        if let right = self.navigationItem.rightBarButtonItems {
+            for item:UIBarButtonItem in  right as! [UIBarButtonItem]{
+                if let view = item.customView {
                     view.alpha = alpha
                 }
             }
