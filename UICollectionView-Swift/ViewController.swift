@@ -16,7 +16,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         cv.dataSource = self
         cv.bounces = true
         cv.alwaysBounceVertical = true
-        cv.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
+        cv.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
         cv.registerClass(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         cv.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         return cv
@@ -69,14 +69,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let textField = alertView.textFieldAtIndex(0)
             self.collectionView.performBatchUpdates({
                         let resultsSize = self.items.count
-                        self.items.addObject(textField!.text)
-                        let size = resultsSize + 1
-                        var arrayWithIndexPaths = NSMutableArray()
+                        self.items.addObject(textField!.text!)
+                        _ = resultsSize + 1
+                var arrayWithIndexPaths:[NSIndexPath] = []
                         var i = 0
                         for (i = resultsSize; i < resultsSize + 1; i++) {
-                                    arrayWithIndexPaths.addObject(NSIndexPath(forRow: i, inSection: 0))
+                                    arrayWithIndexPaths.append(NSIndexPath(forRow: i, inSection: 0))
                         }
-                        self.collectionView.insertItemsAtIndexPaths(arrayWithIndexPaths as [AnyObject])
+                self.collectionView.insertItemsAtIndexPaths(arrayWithIndexPaths as [NSIndexPath])
                 },
                 completion: nil)
         }
@@ -159,7 +159,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func updateBarButtonItems(alpha:CGFloat){
         if let left = self.navigationItem.leftBarButtonItems {
-            for item:UIBarButtonItem in left as! [UIBarButtonItem] {
+            for item:UIBarButtonItem in left {
                 if let view = item.customView {
                     view.alpha = alpha
                 }
@@ -167,7 +167,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         
         if let right = self.navigationItem.rightBarButtonItems {
-            for item:UIBarButtonItem in  right as! [UIBarButtonItem]{
+            for item:UIBarButtonItem in  right {
                 if let view = item.customView {
                     view.alpha = alpha
                 }
@@ -176,7 +176,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
         let black = UIColor.blackColor() // 1.0 alpha
         let semi = black.colorWithAlphaComponent(alpha)
-        var nav = self.navigationController?.navigationBar
+        let nav = self.navigationController?.navigationBar
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: semi]
 
         self.navigationController?.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor.colorWithAlphaComponent(alpha)
