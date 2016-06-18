@@ -10,23 +10,24 @@ import UIKit
 
 class CardView: UIView {
     
-    var label:UILabel
+    lazy var label:UILabel = {
+        let l = UILabel()
+        l.font = UIFont.boldSystemFont(ofSize: 24)
+        l.textAlignment = NSTextAlignment.center
+        return l
+    }()
     
     override init(frame: CGRect) {
-        self.label               = UILabel()
-        self.label.font          = UIFont.boldSystemFontOfSize(24)
-        self.label.textAlignment = NSTextAlignment.Center
         super.init(frame: frame)
 
         self.addSubview(self.label)
-        self.backgroundColor    = UIColor.whiteColor()
+        self.backgroundColor    = UIColor.white()
         self.layer.cornerRadius = 10.0
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 
     override func layoutSubviews() {
         super.layoutSubviews()
